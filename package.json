@@ -1,0 +1,29 @@
+{
+  "name": "Todo-List",
+  "version": "1.0.0",
+  "description": "A simple Todo List made with HTML, CSS and JavaScript, using webpack and date-fns for The Odin Project's purposes. Here is a link to the project: https://www.theodinproject.com/courses/javascript/lessons/todo-list",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m-rejdych/Todo-List.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/m-rejdych/Todo-List/issues"
+  },
+  "homepage": "https://github.com/m-rejdych/Todo-List#readme",
+  "devDependencies": {
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "dependencies": {
+    "date-fns": "^2.12.0"
+  }
+}
