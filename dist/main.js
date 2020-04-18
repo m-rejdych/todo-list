@@ -90,10 +90,35 @@
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("console.log(`Hello World`);\n\n//# sourceURL=webpack:///./src/index.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_DOM__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/DOM */ \"./src/modules/DOM.js\");\n/* harmony import */ var _modules_home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/home */ \"./src/modules/home.js\");\n\n\n\nObject(_modules_home__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/modules/DOM.js":
+/*!****************************!*\
+  !*** ./src/modules/DOM.js ***!
+  \****************************/
+/*! exports provided: createElement */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createElement\", function() { return createElement; });\nfunction createElement(elementType, id, classList, parentNodeId) {\n    const element = document.createElement(elementType);\n\n    if (id) element.setAttribute(`id`, id);\n    if (classList) element.classList.add(classList);\n    if (parentNodeId) document.getElementById(parentNodeId).appendChild(element);\n\n    return element;\n}\n\n\n\n//# sourceURL=webpack:///./src/modules/DOM.js?");
+
+/***/ }),
+
+/***/ "./src/modules/home.js":
+/*!*****************************!*\
+  !*** ./src/modules/home.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _DOM__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DOM */ \"./src/modules/DOM.js\");\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (function() {\n    Object(_DOM__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"])(`div`, `projectsDiv`, undefined, `content`);\n    Object(_DOM__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"])(`div`, `projectsHeaderDiv`, undefined, `projectsDiv`);\n    Object(_DOM__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"])(`h2`, `projectsHeader`, undefined, `projectsHeaderDiv`).textContent = `Projects`;\n\n    Object(_DOM__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"])(`div`, `todosDiv`, undefined, `content`);\n    Object(_DOM__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"])(`div`, `todosHeaderDiv`, undefined, `todosDiv`);\n    Object(_DOM__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"])(`h1`, `todosHeader`, undefined, `todosHeaderDiv`).textContent = `Todos`;\n\n    Object(_DOM__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"])(`div`, `addingButtonsDiv`, undefined, `content`);\n    Object(_DOM__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"])(`button`, `newTodoButton`,`addingButtons`, `addingButtonsDiv`).textContent = `New Todo`;\n    Object(_DOM__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"])(`button`, `newProjectButton`, `addingButtons`, `addingButtonsDiv`).textContent = `New Project`;\n});\n\n//# sourceURL=webpack:///./src/modules/home.js?");
 
 /***/ })
 
