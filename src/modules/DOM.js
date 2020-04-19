@@ -1,4 +1,4 @@
-import { Project } from "./project";
+import { Project, startedProjects } from "./project";
 import { Todo } from "./todo";
 import { format } from 'date-fns';
 
@@ -100,7 +100,7 @@ function createAddTodoButton() {
         addTodoButton.addEventListener(`click`, () => {
             if (!document.getElementById(`inputTitle`).value) {alert(`Type a name!`)} else {
                 new Todo(document.getElementById(`inputTitle`).value, document.getElementById(`inputDescription`).value, 
-                new Date(document.getElementById('inputDate').value).toString(), document.getElementById(`prioritySelect`).value);
+                format(new Date(document.getElementById('inputDate').value), 'dd/MM/yyy, H : m'), document.getElementById(`prioritySelect`).value);
 
                 document.getElementById(`popupBackground`).remove();
             }
@@ -115,20 +115,59 @@ function createAddTodoButton() {
         addProjectButton.addEventListener(`click`, () => {
             if (!document.getElementById(`inputTitle`).value) {alert(`Type a name!`)} else {
             new Project(document.getElementById(`inputTitle`).value, document.getElementById(`inputDescription`).value, 
-            new Date(document.getElementById('inputDate').value).toString());
+            format(new Date(document.getElementById('inputDate').value), 'dd/MM/yyyy, H : m'));
 
             document.getElementById(`popupBackground`).remove();
             }
         })
     }
 
-    function createEditButton() {
+    function createEditButton(edit) {
         const editButton = createElement(`button`, undefined, `addingButtons`, `addCancelButtonsDiv`);
         editButton.textContent = `Edit`;
         editButton.style.width = `30%`;
         editButton.style.height = `100%`;
         editButton.addEventListener(`click`, () => {
+            document.getElementById(`popupBackground`).remove();
+            loadInputBox(edit, `edit`);
+        })
+    }
 
+    function createOkButton(todoProject) {
+        const okButton = createElement(`button`, undefined, `addingButtons`, `addCancelButtonsDiv`);
+        okButton.textContent = `Ok`;
+        okButton.style.width = `40%`;
+        okButton.style.height = `100%`;
+        okButton.addEventListener(`click`, () => {
+            if (todoProject == `Project`) {
+                for (let i = 0; i < startedProjects.length; i++) {
+                    if (startedProjects[i].select == true) {
+                        document.getElementById(startedProjects[i].title).firstElementChild.textContent = document.getElementById(`inputTitle`).value;
+                        document.getElementById(startedProjects[i].title).setAttribute(`id`, document.getElementById(`inputTitle`).value);
+                        startedProjects[i].title = document.getElementById(`inputTitle`).value;
+                        startedProjects[i].description = document.getElementById(`inputDescription`).value;
+                        startedProjects[i].deadline = format(new Date(document.getElementById('inputDate').value), 'dd/MM/yyyy, H : m');
+                        document.getElementById(`popupBackground`).remove();
+                    }
+                }
+            }
+            if (todoProject == `Todo`) {
+                for (let i = 0; i < startedProjects.length; i++) {
+                    if (startedProjects[i].select == true) {
+                        for (let j = 0; j < startedProjects[i].todos.length; j++) {
+                            if (startedProjects[i].todos[j].select == true) {
+                                document.getElementById(`${startedProjects[i].todos[j].title}Todo`.replace(/\s|_/g, ``)).firstElementChild.textContent = document.getElementById(`inputTitle`).value;
+                                document.getElementById(`${startedProjects[i].todos[j].title}Todo`.replace(/\s|_/g, ``)).setAttribute(`id`, `${document.getElementById(`inputTitle`).value}Todo`);
+                                startedProjects[i].todos[j].title = document.getElementById(`inputTitle`).value;
+                                startedProjects[i].todos[j].description = document.getElementById(`inputDescription`).value;
+                                startedProjects[i].todos[j].deadline = format(new Date(document.getElementById('inputDate').value), 'dd/MM/yyyy, H : m');
+                                startedProjects[i].todos[j].priority = document.getElementById(`prioritySelect`).value;
+                            }
+                        }
+                    }
+                }
+                document.getElementById(`popupBackground`).remove();
+            }
         })
     }
 
@@ -153,7 +192,7 @@ function createAddTodoButton() {
         })
     }
 
-    function loadInputBox(todoProject) {
+    function loadInputBox(todoProject, edit) {
         createPopupBackground();
         createElement(`div`, `popupBox`, `popupBox`, `popupBackground`);
         createElement(`h2`, undefined, `popupHeader`, `popupBox`).textContent = todoProject;
@@ -162,7 +201,13 @@ function createAddTodoButton() {
         createDateInput();
         if (todoProject == `New Todo`) createPrioiritySelection();
         createElement(`div`, `addCancelButtonsDiv`, `inputDiv`, `popupBox`);
-        (todoProject == `New Todo`) ? createAddTodoButton(): createAddProjectButton();
+        if (edit != undefined) {
+            if (todoProject == `New Todo`) createOkButton(`Todo`);
+            if (todoProject == `New Project`) createOkButton(`Project`);
+        } else {
+            if (todoProject == `New Todo`) createAddTodoButton()
+            if (todoProject == `New Project`) createAddProjectButton();
+        }
         createCancelButton();
     }
 
@@ -175,6 +220,8 @@ function createAddTodoButton() {
         if (this.deadline && this.deadline != `Invalid Date`) createDateInput(this.deadline);
         if (todoProject == `Todo` && this.priority) createPrioiritySelection(this.priority);
         createElement(`div`, `addCancelButtonsDiv`, `inputDiv`, `popupBox`);
+        if (todoProject == `Todo`) createEditButton(`New Todo`);
+        if (todoProject == `Project`) createEditButton(`New Project`);
         createDeleteButton.call(this);
         createCancelButton(`30%`);
 

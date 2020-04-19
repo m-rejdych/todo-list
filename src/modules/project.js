@@ -1,4 +1,5 @@
 import { createElement, deleteTodos, loadOutputBox } from './DOM';
+import { isThisHour } from 'date-fns';
 
 const startedProjects = [];
 
@@ -44,6 +45,8 @@ class Project {
             const newTodo = createElement(`div`, `${this.todos[i].title}Todo`.replace(/\s|_/g, ``), `todo`, `${this.title}Todos`.replace(/\s|_/g, ``));
 
             newTodo.addEventListener(`click`, () => {
+                this.deactivateTodos();
+                this.todos[i].select = true;
                 this.todos[i].showDetails();
             })
 
@@ -60,6 +63,12 @@ class Project {
             startedProjects[i].select = false;
             document.getElementById(startedProjects[i].title).style.backgroundColor = `transparent`;
         }  
+    }
+
+    deactivateTodos() {
+        for (let i = 0; i < this.todos.length; i++) {
+            this.todos[i].select = false;
+        }
     }
 }
 

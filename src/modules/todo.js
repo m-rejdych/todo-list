@@ -7,13 +7,12 @@ class Todo {
         this.description = description;
         this.deadline = deadline;
         this.priority = priority;
+        this.select = false;
 
         for (let i = 0; i < startedProjects.length; i++) {
             if (startedProjects[i].select === true) {
                 startedProjects[i].todos.push(this);
                 startedProjects[i].loadTodos();
-                console.log(this);
-                console.log(startedProjects[i]);
             }
         }
     }
