@@ -1,5 +1,4 @@
 import { createElement, deleteTodos, loadOutputBox } from './DOM';
-import { isThisHour } from 'date-fns';
 
 const startedProjects = [];
 

@@ -1,4 +1,4 @@
-import { createElement, loadOutputBox } from './DOM';
+import { loadOutputBox } from './DOM';
 import { startedProjects } from './project';
 
 class Todo {

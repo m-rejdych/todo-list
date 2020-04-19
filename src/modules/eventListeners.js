@@ -1,4 +1,4 @@
-import { createElement, loadInputBox } from './DOM';
+import { loadInputBox } from './DOM';
 
 function todoBtnListener() {
     document.getElementById(`newTodoButton`).addEventListener(`click`, () => {
