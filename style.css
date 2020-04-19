@@ -84,9 +84,6 @@ body {
     cursor: pointer;
     box-shadow: 3px 3px 6px black;
 }
-.clickButton {
-
-}
 #todosHeaderDiv, #projectsHeaderDiv, .project, .todo {
     display: flex;
     flex-direction: row;
