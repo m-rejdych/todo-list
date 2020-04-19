@@ -13,7 +13,6 @@ body {
     right: 0;
     min-height: 100vh;
     min-width: 100vw;
-    background-color: rgba(2, 2, 75, 0.856);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -21,9 +20,9 @@ body {
     font-family: 'Fredoka One', Arial, Helvetica;
 }
 #content {
+    background-color: rgba(2, 2, 75, 0.856);
     min-height: 100vh;
     min-width: 100vw;
-    background-color: transparent;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -81,16 +80,23 @@ body {
 .addingButtons:focus {
     outline: none;
 }
-.click {
+.addingButtons:hover {
+    cursor: pointer;
+    box-shadow: 3px 3px 6px black;
+}
+.clickButton {
 
 }
-#todosHeaderDiv, #projectsHeaderDiv {
+#todosHeaderDiv, #projectsHeaderDiv, .project {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     width: 100%;
     border-bottom: 2px solid #000;
+}
+.project {
+    cursor: pointer;
 }
 #todosHeader {
     font-size: 45px;
@@ -99,4 +105,58 @@ body {
 #projectsHeader {
     font-size: 35px;
     margin: 20px;
+}
+.projectHeader {
+    margin: 15px;
+    font-size: 20px;
+}
+.popupBackground {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.664);
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+@keyframes popup {
+    0% {opacity: 0; margin-top: 50px;};
+    50% {opacity: 0.5; margin-top: 25px;};
+    100% {opacity: 1; margin-top: 0;};
+}
+.popupBox {
+    height: 90%;
+    width: 40%;
+    background-color: rgb(102, 88, 88);
+    border-radius: 20px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    animation-name: popup;
+    animation-duration: 1s;
+}
+.popupHeader {
+    font-size: 35px;
+    border-bottom: 2px solid #000;
+}
+.inputDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+}
+.inputDescription {
+    font-size: 25px;
+}
+.input {
+    width: 60%;
+    height: 100%;
+    font-size: 20px;
+    border-radius: 10px;
+    border: 1px solid #000;
+    margin-left: 20px;
 }
