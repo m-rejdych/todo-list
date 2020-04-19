@@ -87,7 +87,7 @@ body {
 .clickButton {
 
 }
-#todosHeaderDiv, #projectsHeaderDiv, .project {
+#todosHeaderDiv, #projectsHeaderDiv, .project, .todo {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -95,7 +95,7 @@ body {
     width: 100%;
     border-bottom: 2px solid #000;
 }
-.project {
+.project, .todo {
     cursor: pointer;
 }
 #todosHeader {
@@ -106,7 +106,7 @@ body {
     font-size: 35px;
     margin: 20px;
 }
-.projectHeader {
+.projectHeader, .todoHeader {
     margin: 15px;
     font-size: 20px;
 }
@@ -159,4 +159,8 @@ body {
     border-radius: 10px;
     border: 1px solid #000;
     margin-left: 20px;
+}
+.todos {
+    height: 100%;
+    width: 100%;
 }
