@@ -13,10 +13,6 @@ body {
     right: 0;
     min-height: 100vh;
     min-width: 100vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
     font-family: 'Fredoka One', Arial, Helvetica;
 }
 #content {
@@ -160,4 +156,10 @@ body {
 .todos {
     height: 100%;
     width: 100%;
+}
+#info {
+    text-align: center;
+}
+#paraInfo {
+    padding: 10px;
 }
