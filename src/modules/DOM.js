@@ -99,7 +99,7 @@ function createAddTodoButton() {
         addTodoButton.addEventListener(`click`, () => {
             for (let i = 0; i < startedProjects.length; i++) {
                 for (let j = 0; j < startedProjects[i].todos.length; j++) {
-                    if (startedProjects[i].todos[j].title == document.getElementById(`inputTitle`).value) {
+                    if (startedProjects[i].select == true && startedProjects[i].todos[j].title == document.getElementById(`inputTitle`).value) {
                         alert(`You have already added that task!`);
                         return;
                     }
@@ -172,7 +172,7 @@ function createAddTodoButton() {
                 for (let i = 0; i < startedProjects.length; i++) {
                     if (startedProjects[i].select == true) {
                         for (let j = 0; j < startedProjects[i].todos.length; j++) {
-                            if (startedProjects[i].todos[j].title == document.getElementById(`inputTitle`).value) {
+                            if (startedProjects[i].select == true && startedProjects[i].todos[j].title == document.getElementById(`inputTitle`).value) {
                                 alert(`You have already added that task!`);
                                 return;
                             }
