@@ -8,6 +8,7 @@ class Todo {
         this.deadline = deadline;
         this.priority = priority;
         this.select = false;
+        this.check = false;
 
         for (let i = 0; i < startedProjects.length; i++) {
             if (startedProjects[i].select === true) {

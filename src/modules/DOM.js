@@ -61,7 +61,7 @@ function createDateInput(output = `input`) {
             labelDate.textContent = `Deadline:`;
 
             const inputDate =  createElement(`input`, `inputDate`, `input`, `dateInputDiv`);
-            inputDate.setAttribute(`type`, `datetime-local`);
+            inputDate.setAttribute(`type`, `date`);
         }
 }
 
@@ -100,7 +100,7 @@ function createAddTodoButton() {
         addTodoButton.addEventListener(`click`, () => {
             if (!document.getElementById(`inputTitle`).value) {alert(`Type a name!`)} else {
                 new Todo(document.getElementById(`inputTitle`).value, document.getElementById(`inputDescription`).value, 
-                format(new Date(document.getElementById('inputDate').value), 'dd/MM/yyy, H : m'), document.getElementById(`prioritySelect`).value);
+                document.getElementById('inputDate').value, document.getElementById(`prioritySelect`).value);
 
                 document.getElementById(`popupBackground`).remove();
             }
@@ -115,7 +115,7 @@ function createAddTodoButton() {
         addProjectButton.addEventListener(`click`, () => {
             if (!document.getElementById(`inputTitle`).value) {alert(`Type a name!`)} else {
             new Project(document.getElementById(`inputTitle`).value, document.getElementById(`inputDescription`).value, 
-            format(new Date(document.getElementById('inputDate').value), 'dd/MM/yyyy, H : m'));
+            document.getElementById('inputDate').value);
 
             document.getElementById(`popupBackground`).remove();
             }
@@ -146,7 +146,7 @@ function createAddTodoButton() {
                         document.getElementById(startedProjects[i].title).setAttribute(`id`, document.getElementById(`inputTitle`).value);
                         startedProjects[i].title = document.getElementById(`inputTitle`).value;
                         startedProjects[i].description = document.getElementById(`inputDescription`).value;
-                        startedProjects[i].deadline = format(new Date(document.getElementById('inputDate').value), 'dd/MM/yyyy, H : m');
+                        startedProjects[i].deadline = document.getElementById('inputDate').value;
                         document.getElementById(`popupBackground`).remove();
                     }
                 }
@@ -160,7 +160,7 @@ function createAddTodoButton() {
                                 document.getElementById(`${startedProjects[i].todos[j].title}Todo`.replace(/\s|_/g, ``)).setAttribute(`id`, `${document.getElementById(`inputTitle`).value}Todo`);
                                 startedProjects[i].todos[j].title = document.getElementById(`inputTitle`).value;
                                 startedProjects[i].todos[j].description = document.getElementById(`inputDescription`).value;
-                                startedProjects[i].todos[j].deadline = format(new Date(document.getElementById('inputDate').value), 'dd/MM/yyyy, H : m');
+                                startedProjects[i].todos[j].deadline = document.getElementById('inputDate').value;
                                 startedProjects[i].todos[j].priority = document.getElementById(`prioritySelect`).value;
                             }
                         }
