@@ -1,6 +1,5 @@
 import { Project, startedProjects } from "./project";
 import { Todo } from "./todo";
-import { format } from 'date-fns';
 
 function createElement(elementType, id, classList, parentNodeId) {
     const element = document.createElement(elementType);
@@ -98,6 +97,14 @@ function createAddTodoButton() {
         addTodoButton.style.width = `40%`;
         addTodoButton.style.height = `100%`;
         addTodoButton.addEventListener(`click`, () => {
+            for (let i = 0; i < startedProjects.length; i++) {
+                for (let j = 0; j < startedProjects[i].todos.length; j++) {
+                    if (startedProjects[i].todos[j].title == document.getElementById(`inputTitle`).value) {
+                        alert(`You have already added that task!`);
+                        return;
+                    }
+                }
+            }
             if (!document.getElementById(`inputTitle`).value) {alert(`Type a name!`)} else {
                 new Todo(document.getElementById(`inputTitle`).value, document.getElementById(`inputDescription`).value, 
                 document.getElementById('inputDate').value, document.getElementById(`prioritySelect`).value);
@@ -113,6 +120,12 @@ function createAddTodoButton() {
         addProjectButton.style.width = `40%`;
         addProjectButton.style.height = `100%`;
         addProjectButton.addEventListener(`click`, () => {
+            for (let i = 0; i < startedProjects.length; i++) {
+                if (startedProjects[i].title == document.getElementById(`inputTitle`).value) {
+                    alert(`You have already added that project!`);
+                    return;
+                }
+            }
             if (!document.getElementById(`inputTitle`).value) {alert(`Type a name!`)} else {
             new Project(document.getElementById(`inputTitle`).value, document.getElementById(`inputDescription`).value, 
             document.getElementById('inputDate').value);
@@ -141,6 +154,10 @@ function createAddTodoButton() {
         okButton.addEventListener(`click`, () => {
             if (todoProject == `Project`) {
                 for (let i = 0; i < startedProjects.length; i++) {
+                    if (startedProjects[i].title == document.getElementById(`inputTitle`).value) {
+                        alert(`You have already added that project!`);
+                        return;
+                    }
                     if (startedProjects[i].select == true) {
                         document.getElementById(startedProjects[i].title).firstElementChild.textContent = document.getElementById(`inputTitle`).value;
                         document.getElementById(startedProjects[i].title).setAttribute(`id`, document.getElementById(`inputTitle`).value);
@@ -155,6 +172,10 @@ function createAddTodoButton() {
                 for (let i = 0; i < startedProjects.length; i++) {
                     if (startedProjects[i].select == true) {
                         for (let j = 0; j < startedProjects[i].todos.length; j++) {
+                            if (startedProjects[i].todos[j].title == document.getElementById(`inputTitle`).value) {
+                                alert(`You have already added that task!`);
+                                return;
+                            }
                             if (startedProjects[i].todos[j].select == true) {
                                 document.getElementById(`${startedProjects[i].todos[j].title}Todo`.replace(/\s|_/g, ``)).firstElementChild.textContent = document.getElementById(`inputTitle`).value;
                                 document.getElementById(`${startedProjects[i].todos[j].title}Todo`.replace(/\s|_/g, ``)).setAttribute(`id`, `${document.getElementById(`inputTitle`).value}Todo`);
@@ -233,7 +254,17 @@ function createAddTodoButton() {
         if (todosDiv.children.length > 1) todosDiv.lastElementChild.remove();
     }
 
+    function loadInformationPopup() {
+        window.addEventListener(`load`, () => {
+            const info = createElement(`div`, `info`);
+            document.body.insertBefore(info, document.getElementById(`content`));
+            const paraInfo = createElement(`p`, `paraInfo`, undefined, `info`);
+            paraInfo.textContent = `Double-click on Project or Todo to see the details!`;
+
+            setTimeout(() => {
+                info.remove();
+            }, 4000)
+        })
+    }
     
-export { createElement,createPopupBackground,  createTitleInput, createDescriptionInput, createDateInput,
-    createPrioiritySelection, createAddTodoButton, createAddProjectButton, createCancelButton,
-    deleteTodos, loadInputBox, loadOutputBox };
+export { createElement, deleteTodos, loadInputBox, loadOutputBox, loadInformationPopup };

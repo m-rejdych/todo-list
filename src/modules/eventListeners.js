@@ -1,4 +1,5 @@
 import { loadInputBox } from './DOM';
+import { startedProjects } from './project';
 
 function todoBtnListener() {
     document.getElementById(`newTodoButton`).addEventListener(`click`, () => {
@@ -11,6 +12,5 @@ function projectBtnListener() {
         loadInputBox(`New Project`);
     })
 }
-
 
 export { todoBtnListener, projectBtnListener };
